@@ -258,3 +258,92 @@ p32列表排序
 person[0]={id:'1',name:'lai',age:12,sex:'F'}
 ```
 
+# Vue表单
+
+## 输入类
+
+使用v-model代替value
+
+## 选择类 
+
+除了本身的value属性需要存在，还需要添加v-model进行数据绑定，用于接收选择的value
+
+```html
+        <input type="radio" name="sex" v-model="sex" value="M">男<br><br>
+        爱好：<input type="checkbox"  v-model="hobby" value="study">学习
+        <input type="checkbox"  v-model="hobby" value="games">游戏
+        <input type="checkbox"  v-model="hobby" value="eat">吃饭
+```
+
+```js
+        const vm = new Vue({
+            el: 'form',
+            data: {
+                username: '',
+                password: '',
+                sex: '',
+                hobby:[],
+            }
+        })
+```
+
+## v-model修饰符
+
+- `number`
+
+```js
+年龄：<input type="number" v-model.number="userInfo.age">
+```
+
+- `lazy`
+
+失去焦点时，再进行响应式更新
+
+- `trim`
+
+去掉前后的空格
+
+```js
+姓名：<input type="text" v-model.trim="userInfo.name"> 
+```
+
+# 过滤器
+
+## Day.js
+
+
+
+## 过滤器
+
+过滤器在Vue3已废弃
+
+```js
+{{data属性 | 过滤器名}}
+```
+
+在Vue中添加配置项
+
+```js
+filters:{
+    过滤器名(value){
+        //函数体
+    }
+}
+```
+
+获得data属性后，Vue会将data属性作为实参传入过滤器函数。过滤器返回值将替换整个表达式：`data属性 | 过滤器名`
+
+- 多个过滤器串联：
+
+```js
+属性|过滤器1|过滤器2|...
+```
+
+属性->过滤器1->过滤器2
+
+- 声明全局过滤器，必须声明在Vue实例创建之前
+
+```js
+Vue.filter('过滤器名',过滤器函数)
+```
+

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+
+    <form @submit.prevent="demo1">
+        姓名：<input type="text" v-model.trim="userInfo.name"> <br><br>
+        密码：<input type="password" v-model="userInfo.password"><br><br>
+        年龄：<input type="number" v-model.number="userInfo.age"><br><br>
+        性别：<input type="radio" name="sex" v-model="userInfo.sex" value="F">女
+        <input type="radio" name="sex" v-model="userInfo.sex" value="M">男<br><br>
+        爱好：<input type="checkbox"  v-model="userInfo.hobby" value="study">学习
+        <input type="checkbox"  v-model="userInfo.hobby" value="games">游戏
+        <input type="checkbox"  v-model="userInfo.hobby" value="eat">吃饭<br><br>
+        城市：<select name="city" v-model="userInfo.city">
+            <option value="">请选择城市</option>
+            <option value="XMN">厦门</option>
+            <option value="SMG">三明</option>
+            <option value="CKG">重庆</option>
+        </select>
+        <br><br>
+        <textarea v-model="userInfo.other"></textarea><br>
+        <input type="checkbox" v-model="userInfo.read">阅读并同意<a href="">用户协议</a>
+        <button type="submit">提交</button>
+
+
+
+
+
+
+    </form>
+
+
+
+
+    <script>
+        const vm = new Vue({
+            el: 'form',
+            data: {
+                userInfo:{
+                    username: '',
+                    password: '',
+                    age:0,
+                    sex: '',
+                    hobby:[],
+                    city:'',
+                    other:'',
+                    read:'false'
+                }
+
+
+
+            },
+            methods: {
+                demo1(){
+                    console.log(JSON.stringify(this.userInfo));
+
+                }
+                
+            },
+        })
+
+    </script>
+</body>
+
+</html>
