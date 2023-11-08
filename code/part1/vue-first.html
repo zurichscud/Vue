@@ -1,10 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<div id="app">
+    {{info.toUpperCase()}}
+    <a :href="url">百度一下</a>
+    <input type="text" v-bind:value="name">
+    <input type="text" v-model:value="name">
+</div>
+
+
+
+
+<script src="../vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',//通过EL配置选择器
+        data: {
+            msg: '<h1>hello world</h1>',
+            info: 'abc',
+            url:'https://baidu.com',
+            name:'Amy'
+
+        }
+    })
+    // app.msg='修改的数据'
+    
+</script>
+
 </body>
 </html>

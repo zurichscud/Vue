@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button v-on:click="show">点击我</button>
+        <br>
+        <!-- <input type="text" placeholder="按下回车发送消息" @keyup.enter="show"> -->
+        姓：<input type="text" v-model="firstname"><br>
+        名：<input type="text" v-model="lastname">
+        <span style="font-size: 40px;">{{fullname()}}</span>
+        <span>{{firstname+lastname}}</span>
+        <span>{{fullname}}</span>
+        <span>{{fullname}}</span>
+        <span>{{fullname}}</span>
+    </div>
+
+    <script>
+
+        const vm = new Vue({
+            el: '#app',//通过EL配置选择器
+            data: {
+                firstname: '黎',
+                lastname: '锐',
+                fullname: 'null'
+            },
+            methods: {
+                show(e) {
+                    alert('Hello')
+                    console.log(e.key);
+                },
+                fullname() {
+                    return this.firstname + this.lastname
+
+                }
+            },
+            computed: {
+                fullname: {
+                    get() {
+                        const name=undefined
+                        setTimeout(() => {
+                            name= this.firstname + this.lastname
+                        }, 1000);
+                        return name
+                    }
+                }
+
+            },
+            watch: {
+                firstname(value) {
+                    setTimeout(() => {
+                        this.fullname = value + this.lastname
+                    }, 1000);
+                },
+                lastname(value) {
+                    setTimeout(() => {
+                        this.fullname=this.firstname+value
+                    }, 1000);
+                }
+
+            },
+        })
+
+    </script>
+</body>
+
+</html>

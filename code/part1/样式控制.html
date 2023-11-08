@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+
+    <div id="box">
+
+        <span v-show="表达式">Hello</span>
+        <span v-if="i<10">Hello</span>
+        <span v-else-if="i<20">Hello</span>
+        <span v-else-if="i<30">Hello</span>
+        <span v-else>Hello</span>
+        <template v-if="i===1">
+            <span >Hello</span>
+            <span >Hello</span>
+            <span >Hello</span>
+            <span >Hello</span>
+        </template>
+        <ul>
+            <li v-for="p in persons" :key="p.id">姓名:{{p.name}} 年龄：{{p.age}}</li>
+        </ul>
+        <li v-for="(number,index) in 5">Hello</li>
+
+
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data: {
+                style1:{
+                    fontSize:'40px',
+                    color:'red',
+
+                },
+                style2:{
+                    backgroundColor:'orange'
+                },
+                persons:[
+                {id:'01',name:'Sam',age:12},
+                {id:'02',name:'Amy',age:15},
+                {id:'03',name:'Xud',age:13},
+                ]
+            }
+        })
+    </script>
+</body>
+</html>
