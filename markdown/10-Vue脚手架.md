@@ -36,3 +36,42 @@ script中
 - build 构建Vue工程文件
 - lint 语法检查
 
+执行 `npm run serve`命令时，将立即执行`src/main.js`
+
+## src
+
+### main.js
+
+脚手架的入口
+
+## public
+
+html页面，存放`index.html`，`favicon.ico`页签图标
+
+## index.html
+
+在Vue脚手架中不需要引入main.js，不需要引入vue.js
+
+资源和title：
+
+```js
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+```
+
+## vue.config.js
+
+vue脚手架配置文件
+
+- 关闭语法检查
+
+```js
+lintOnSave:false
+```
+
+
+
+## components
+
+Vue组件文件夹，组件要求大驼峰命名
+
