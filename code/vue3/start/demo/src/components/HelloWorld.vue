@@ -1,6 +1,6 @@
 <template>
-  <h1>{{ msg }}</h1>
-  <button @click="count++">count is: {{ count }}</button>
+    <h1>{{ 'Bye Vue' }}</h1>
+<!--    <button @click="count++">count is: {{ count }}</button>-->
 </template>
 
 <script>
@@ -16,3 +16,8 @@ export default {
   }
 }
 </script>
+<style module>
+.box{
+  background-color: yellow;
+}
+</style>

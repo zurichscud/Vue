@@ -43,100 +43,44 @@ template可以直接在被绑定的网页中写
 
 如果两者都存在，则template中的内容会代替根元素中的HTML结构
 
-# data
+# methods
 
-data函数中的`this`就是*vm*，
+指定组件中使用的方法，其将会挂载在组件实例vm中
+
+methods中的this指向的是组件实例
+
+
+
+# computed
+
+## getter
+
+计算属性：根据data中的属性通过一定的逻辑计算得到的属性。
+
+使用计算属性时，将其当作一个属性而不是函数。
 
 ```js
-  data(){
-    this.name='Sam'
-    return{
-      msg:'Java'
+{{info}}
+```
+
+```js
+computed: {
+    info(){
+        if (this.age<10) {
+            return '你还是个孩子'
+        }
+        else{
+            return '你已经长大了'
+        }
     }
-  }
+},
 ```
 
-`return`中的数据才是响应式数据，直接向组件实例中添加的属性不会被Vue所代理，不是响应式数据
 
-## $data
 
-`vm.$data`是实际的代理对象
-
-直接向`vm.data`添加的属性不会成为响应式数据
-
-# 代理模式
-
-## 为对象创建代理
-
-```js
-    let obj={name:'lai'}
-    const handler={}
-    const proxy=new Proxy(obj,handler)
-    console.log(proxy)
-```
-
-> *Proxy(Object) {name: 'lai'}*
+> methods在模板重新渲染时都会调用
 >
-> 1. [[Handler]]: Object
->
-> 2. [[Target]]: Object
->
-> 3. [[IsRevoked]]: false
+> computed会对数据缓存，当绑定的相关属性（age）没有变化时则不会被调用
 
-vm就是一个代理对象（*Proxy*）
-
-Target中存储了被代理对象的属性
-
-```js
-proxy.name//lai
-```
-
-```js
-proxy.name='sun'
-obj.name//sun
-```
-
-`handler`中可以指定代理的行为
-
-### get
-
-读取属性时会调用get方法读取被代理对象的值
-
-```js
-get(target,prop,receiver)
-```
-
-- `target`：被代理对象
-- `prop`：属性
-- `receiver`：代理对象
-
-```js
-get(target,prop,receiver){
-    return target[prop]
-}
-```
-
-### set
-
-通过代理修改对象时触发
-
-```js
-set(target,prop,value,receiver){
-     target[prop]=value
-}
-```
-
-- `value`：通过代理对象设置的值
-
-
-
-vue是一个Proxy对象
-
-在vue中，data返回的对象会被vue所代理。当我们通过代理去读取属性时，返回值之前，他会先做一个追踪的操作：track（）追踪谁用了该属性
-
-当我们使用代理修改属性时，会通知之前所有使用了该值的地方进行数据的更新：`trigger`()触发所有使用该值的位置进行更新
-
-```js
-vm.age=20
-```
+## setter
 

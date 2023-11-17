@@ -12,12 +12,31 @@
 <div id="root"></div>
 <script>
     const Root={
-        template:'<h1>{{msg}}</h1>',
+        template:'<h1>{{age}}</h1><hr><h1>{{friend[1]}}</h1>',
         data(){
             return {
-                msg:'你好，Vue'
+                msg:'你好，Vue',
+                age:8,
+                friend:['猪八戒','玉兔公主']
             }
-        }
+        },
+        methods: {
+          test(){
+            alert('hahaha')
+          }  
+        },
+        computed: {
+            info(){
+                if (this.age<10) {
+                    return '你还是个孩子'
+                }
+                else{
+                    return '你已经长大了'
+                }
+            }
+        },
+        
+        
 
     }
     const app=Vue.createApp(Root)

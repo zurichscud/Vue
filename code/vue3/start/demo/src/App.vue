@@ -1,25 +1,39 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3.0 + Vite" />
-  <HelloWorld msg="Hello Vue 3.0 + Vite" />
-  <HelloWorld msg="Hello Vue 3.0 + Vite" />
+  <div>
+    <h1>Hello vue</h1>
+    <HelloWorld></HelloWorld>
+    <div :class="obj">!</div>
+    <div :style="style"></div>
+  </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script setup>
+import {computed, reactive, ref} from "vue";
+import HelloWorld from "./components/HelloWorld.vue";
+import helloWorld from "./components/HelloWorld.vue";
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  },
-  data(){
-    this.name='Sam'
-    return{
-      msg:'Java'
-    }
-  }
+let msg = ref('hello Vue')
+const obj={
+  box1:false,
+  box2:true,
+  box3:true
+}
+const isDisabled = false
+const style={
+  backgroundColor:'yellow'
 }
 
+function f() {
+  console.log(msg.value)
+}
+
+const res = computed(() => {
+  return res + 1
+})
 
 </script>
+<style scoped>
+h1 {
+  background-color: yellow;
+}
+</style>

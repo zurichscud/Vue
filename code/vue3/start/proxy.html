@@ -1,26 +1,33 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
-            let obj={name:'lai',age:12}
-    const handler={
-        get(target,prop,receiver){
-            return target[prop]
-        },
-        set(target,prop,value,receiver){
-             target[prop]=value+1
+        
+        let obj = { name: 'lai', age: 12 }
+        const handler = {
+            get(target, prop, receiver) {
+                return target[prop]
+            },
+            set(target, prop, value, receiver) {
+                target[prop] = value + 1
+            }
         }
-    }
-    const proxy=new Proxy(obj,handler)
-    proxy.age=99
-    console.log(proxy.age)
+        const proxy = new Proxy(obj, handler)
+        const temp=proxy.age
+        console.log(temp);
+        proxy.age = 99
+        console.log(proxy.age)
+        console.log(temp);
+
+
     </script>
-    
 </body>
+
 </html>

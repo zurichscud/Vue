@@ -93,7 +93,9 @@ data中的数据会变为Vue实例的属性成员
 app.msg='test'
 ```
 
-> 插值表达式不能解析HTML标签
+> 插值语法中不能解析HTML标签
+>
+> 凡是有返回值的表达式均可以写在插值语法中
 
 
 
@@ -185,6 +187,9 @@ Model：data
 # Vue指令
 
 ## v-html
+
+将其转为*innerHTML*中插入
+
 ```js
 <div id="app" v-html="msg">
 ```
@@ -214,3 +219,39 @@ Model：data
 ## v-bind
 
 `v-bind:`可以简写成`:`
+
+动态设置属性。
+
+```js
+<img :src='setup中的变量'>
+```
+
+最终会解析成 `src`属性
+
+###  添加对象属性
+
+可以传入一个对象，会将对象中的属性解析成html标签中的属性
+
+```js
+attrs={
+    id:box1,
+    class:'base'
+}
+<img :attrs='attrs'>
+```
+
+> <img id="box1" class="base"> </img>
+
+
+
+### 添加布尔值属性
+
+```js
+const isDisabled=false
+<input type="text" :disabled="isDisabled">
+```
+
+布尔值可以是truely或falsely类型的value
+
+
+
